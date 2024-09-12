@@ -9,10 +9,21 @@
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
+        }
+
+        h2 {
+          font-family: cursive;
+          font-size: 54px;
+          font-weight: bold;
+          letter-spacing: 12px;
+          background-color: orange;
+          border-radius: 4px 12px 4px 12px;
+          padding: 3px 12px;
         }
 
         .calculator {
@@ -77,6 +88,8 @@
     </style>
 </head>
 <body>
+
+<h2>Calculator App</h2>
 
 <div class="calculator">
     <form method="post">

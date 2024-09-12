@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PHP Calculator</title>
     <style>
+        /* Your existing styles remain the same */
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
@@ -93,7 +94,7 @@
 
 <div class="calculator">
     <form method="post">
-        <input type="text" name="display" id="display" value="<?php echo isset($_POST['display']) ? $_POST['display'] : ''; ?>" readonly>
+        <input type="text" name="display" id="display" value="<?php echo isset($_POST['display']) ? $_POST['display'] : ''; ?>" >
         <br>
         <button type="submit" name="button" value="1">1</button>
         <button type="submit" name="button" value="2">2</button>
@@ -125,7 +126,12 @@
         } elseif ($_POST['button'] === '=') {
             // Evaluate the expression and handle errors
             try {
-                $current = eval("return $current;"); // Using eval to calculate
+                // Prevent code injection by sanitizing the input, allowing only basic operations and numbers
+                if (preg_match('/^[0-9+\-*\/\s.()]+$/', $current)) {
+                    $current = eval("return $current;"); // Safely evaluate the expression
+                } else {
+                    $current = "Invalid Input"; // Handle invalid input
+                }
             } catch (Throwable $e) {
                 $current = "Error"; // Show error if the calculation fails
             }

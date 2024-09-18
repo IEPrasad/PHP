@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Calculator</title>
+</head>
+<body>
+    <h2>Age Calculator</h2>
+    <form method="post">
+        <label for="birthday">Enter your birthday:</label>
+        <input type="date" id="birthday" name="birthday" required>
+        <br><br>
+        <input type="submit" value="Calculate Age">
+    </form>
+
+    <?php
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['birthday'])) {
+        $birthday = $_POST['birthday'];
+        $today = date("Y-m-d");
+
+        // Calculate age
+        $age = date_diff(date_create($birthday), date_create($today))->y;
+
+        echo "<h3>Your Age: $age years</h3>";
+    }
+    ?>
+</body>
+</html>
